@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
-import static org.apache.camel.component.hl7.TerserLanguage.terser;
+import static org.apache.camel.component.hl7.HL7.terser;
 
 public class HeaderBean {
     private static Logger log = LoggerFactory.getLogger("HeaderBean");
