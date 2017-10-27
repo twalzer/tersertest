@@ -1,6 +1,5 @@
 package net.integratix;
 
-import junit.framework.TestCase;
 import org.apache.camel.CamelContext;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.Produce;
@@ -12,7 +11,7 @@ import org.apache.camel.impl.SimpleRegistry;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 
-public class Tester extends CamelTestSupport {
+public class TesterProcessor extends CamelTestSupport {
 
     private CamelContext context;
     @Produce(uri = "direct:in")
@@ -23,7 +22,7 @@ public class Tester extends CamelTestSupport {
 
     @Override
     protected RouteBuilder createRouteBuilder() throws Exception {
-        MyRouteBuilder routeBuilder = new MyRouteBuilder();
+        MyRouteBuilderWithProcessor routeBuilder = new MyRouteBuilderWithProcessor();
         routeBuilder.setSourceUri("direct:in");
         routeBuilder.setTargetUri("mock:out");
         return routeBuilder;

@@ -9,7 +9,7 @@ import static org.apache.camel.component.hl7.HL7.terser;
 /**
  * A Camel Java DSL Router
  */
-public class MyRouteBuilder extends RouteBuilder {
+public class MyRouteBuilderWithProcessor extends RouteBuilder {
 
     public void setSourceUri(String sourceUri) {
         this.sourceUri = sourceUri;
@@ -36,7 +36,8 @@ public class MyRouteBuilder extends RouteBuilder {
             .log("msh4: ${header.sending_fac}")
             .setHeader("caseno_outside_bean",terser("/PATIENT_RESULT/PATIENT/PV1-19-1"))
             .log("caseno outside bean: ${header.caseno_outside_bean}")
-            .bean("headerBean","setHeaders")
+            //.bean("headerBean","setHeaders")
+                .process(new HeaderProcessor())
             .log("caseno from inside bean/header: ${header.caseno}")
             .transform(regexReplaceAll(body(), "\r","\n"))
             .log("message is ${body}")
